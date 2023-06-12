@@ -1,0 +1,31 @@
+<form [formGroup]="regForm" (ngSubmit)="onSubmit()">
+
+    <label for="rno">Roll Number:</label>
+    <input type="number" id="rno" formControlName="rno"  name="rno" [disabled]="disabler"/>
+  
+    <label for="stname">Student Name:</label>
+    <input type="text" id="stname" formControlName="name" name="name" required />
+  
+    <label for="gender">Gender:</label>
+    <select id="gender" formControlName="gender" name="gender" required>
+      <option value="M">Male</option>
+      <option value="F">Female</option>
+      <option value="O">Other</option>
+    </select>
+  
+    <label for="bdate">Birth Date:</label>
+    <input type="date" id="bdate"  formControlName="dob" name="dob" required />
+  
+    <label for="branch">Branch:</label>
+    <select id="branch" formControlName="branch" name="branch" required>
+      <option value="branch1">Branch 1</option>
+      <option value="branch2">Branch 2</option>
+      <option value="branch3">Branch 3</option>
+    </select>
+  
+    <label for="stadd">Student Address:</label>
+    <textarea id="stadd" formControlName="stadd" name="stadd" required></textarea>
+  
+    <button type="submit">Submit</button>
+  </form>
+  

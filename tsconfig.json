@@ -22,7 +22,8 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "strictPropertyInitialization": false,      // used to stop giving errors for not initializing properties in constructor
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

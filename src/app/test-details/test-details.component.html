@@ -1,0 +1,37 @@
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <th>Rno</th>
+    <th>Name</th>
+    <th>Gender</th>
+    <th>DoB</th>
+    <th>Branch</th>
+    <th>Stadd</th>
+    <th>Update / Delete</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tst of testService.listTest; let i = index">
+      <td>{{ tst.rno }}</td>
+      <td>{{ tst.name }}</td>
+      <td>{{ tst.gender }}</td>
+      <td>{{ tst.dob }}</td>
+      <td>{{ tst.branch }}</td>
+      <td>{{ tst.stadd }}</td>
+      <td class="icons">
+        <span><a (click)="onEdit(tst.rno)" class="link-dark"><i class="bi bi-pen"></i></a></span>
+        &nbsp;&nbsp;
+        <span><a (click)="onDelete(tst)" class="link-dark"><i class="bi bi-trash"></i></a></span>
+      </td>
+      <!-- <td >
+        <span><img src="../img/edit.png" alt="edit" /></span>
+        <span><img src="../img/delete.png" alt="delete" /></span>
+      </td> -->
+    </tr>
+  </tbody>
+</table>
+<!-- <app-test-form [lastRno] = "i"></app-test-form> -->
+<div>
+  <!-- <app-test-form></app-test-form> -->
+</div>
+<div *ngIf="RnoOut!==0">
+  <app-test-update [Rno]="RnoOut"></app-test-update>
+</div>
