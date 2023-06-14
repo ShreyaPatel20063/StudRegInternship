@@ -9,7 +9,9 @@ import { TestDetailsComponent } from './test-details/test-details.component'; //
 import { TestFormComponent } from './test-details/test-form/test-form.component'; // it is used to make the class as a component
 import { DatePipe } from '@angular/common';   // it is used to format the date
 import { TestUpdateComponent } from './test-details/test-update/test-update.component';
-import { StudDetailsComponent } from './stud-details/stud-details.component'; // it is used to make the class as a component
+import { StudDetailsComponent } from './stud-details/stud-details.component';
+import { StudDisplayComponent } from './stud-details/stud-display/stud-display.component';
+import { StudFormComponent } from './stud-details/stud-form/stud-form.component'; // it is used to make the class as a component
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { StudDetailsComponent } from './stud-details/stud-details.component'; //
     TestDetailsComponent,
     TestFormComponent,
     TestUpdateComponent,
-    StudDetailsComponent
+    StudDetailsComponent,
+    StudDisplayComponent,
+    StudFormComponent
   ],
   imports: [
     BrowserModule,

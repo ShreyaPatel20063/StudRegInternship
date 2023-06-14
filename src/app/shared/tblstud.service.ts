@@ -1,28 +1,45 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Tblstud } from './tblstud.model';
+import { Tblcourse } from './tblcourse.model';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class TblstudService {
 
-  constructor(private myhttp : HttpClient) { }
+  constructor(private myhttp : HttpClient) {   }
+  //for tblstud
   studUrl: string = "https://localhost:7095/api/Api"; // this is the url of the api
-
   listStud: Tblstud[] = []; // this is the array of objects of type Tblstud
   studData: Tblstud = new Tblstud(); // this is the object of type Tblstud
 
-  public setter(stud: any) {
+  //for tblcourse
+  courseUrl: string = "https://localhost:7095/api/Api/course"; // this is the url of the api
+  listCourse: Tblcourse[] =[]; // this is the array of objects of type Tblcourse
+  courseData: Tblcourse = new Tblcourse(); // this is the object of type Tblcourse
+
+
+  public setStudData(stud: Tblstud) {
     this.studData = stud;
   } // this method is used to set the value of studData
 
-  public getter() {
+  public getStudData() {
     return this.studData;
   } // this method is used to get the value of studData
+  
+  // public setListStud(stud: any) {
+  //   this.listStud = stud;
+  //   console.log(this.listStud);
+  // } // this method is used to set the value of studData
+  // public getListStud() {
+  //   return this.listStud;
+  // } // this method is used to get the value of studData
 
-  getAllStud() {
-    return this.myhttp.get<Tblstud> (this.studUrl);
+  getAllStud(): Observable<Tblstud[]> {
+    return this.myhttp.get<Tblstud[]> (this.studUrl);
   } // this method is used to get the value of studData
 
   getStudById(id: number) {
@@ -41,5 +58,39 @@ export class TblstudService {
     return this.myhttp.delete(`${this.studUrl}/${id}`);
   } // this method is used to delete a record from the database
   
+
+  public setcourseData(course: Tblcourse) {
+    this.courseData = course;
+  } // this method is used to set the value of courseData
+  public setcourseDataById(cid : number){
+    const s = this.listCourse.find(function(i){
+      return i.cid == cid;
+    });
+    if(s != null)
+    {
+      this.courseData = s;
+    }else{
+      this.courseData = new Tblcourse;
+    }
+  }
+  public getcourseData() {
+    return this.courseData;
+  } // this method is used to get the value of courseData
+  
+  // public setListCourse(course: Tblcourse[]) {
+  //   this.listCourse = course;
+  // } // this method is used to set the value of Listcourse
+  // public getListCourse() {
+  //   return this.listCourse;
+  // } // this method is used to get the value of Listcourse
+
+  getCourse(): Observable<Tblcourse[]> {
+    return this.myhttp.get<Tblcourse[]>(this.courseUrl);
+  } // this method is used to get the value of courseData
+
+  getCourseById(id: number) {
+    return this.myhttp.get<Tblcourse>(`${this.courseUrl}/${id}`);
+  } // this method is used to get the value of courseData
+
 
 }

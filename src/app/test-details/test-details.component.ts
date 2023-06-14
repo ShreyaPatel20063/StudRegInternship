@@ -16,6 +16,8 @@ export class TestDetailsComponent implements OnInit{
   ngOnInit(){
     this.testService.readTest().subscribe(data=> {
       this.testService.listTest = data;
+      console.log(data);
+      console.log(this.testService.listTest);
     }); // subscribe is used to get the data from the api and is used when we use observable
   }
   onEdit(rno : number) {

@@ -1,15 +1,13 @@
-import { Tblcourse } from "./tblcourse.model";
 export class Tblstud {
-    Sid : number;
-    Name : string | undefined;
-    Dob: Date;
-    Gender: string;
-    Cid: number;
-    Rno: string;
-    Div: number;
-    Sem: number;
-    Per12: number;
-    Add: string;
-    CidNavigation : Tblcourse;
-
+    sid : number;
+    name : string ;
+    dob: Date;
+    gender: string;
+    cid: number;
+    rno: string;
+    div: number;
+    sem: number;
+    per12: number;
+    add: string;
+    cidNavigation : null = null;
 }

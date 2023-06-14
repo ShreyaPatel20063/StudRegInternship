@@ -1,1 +1,31 @@
-<p>stud-details works!</p>
+<div>
+  <table class="table table-light">
+    <thead class="thead-dark">
+      <th>Sid</th>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Course</th>
+      <th>Rno</th>
+      <th>Actions</th>
+    </thead>
+    <tbody >
+      <tr *ngFor="let ls of service.listStud; let i=index">
+        <td>{{ ls.sid }}</td>
+        <td>{{ ls.name }}</td>
+        <td>{{ ls.gender }}</td>
+        <td>{{ ls.cid }}</td>
+        <td>{{ ls.rno }}</td>
+        <td class="icons">
+          <span><a (click)="onDisplay(ls)"   class="link-dark"><i class="bi bi-plus"></i></a></span>
+          &nbsp;&nbsp;
+          <span><a (click)="onEdit(ls.sid)" class="link-dark"><i class="bi bi-pen"></i></a></span>
+          &nbsp;&nbsp;
+          <span><a (click)="onDelete(ls)" class="link-dark"><i class="bi bi-trash"></i></a></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="Display">
+    <app-stud-display></app-stud-display>
+  </div>
+</div>

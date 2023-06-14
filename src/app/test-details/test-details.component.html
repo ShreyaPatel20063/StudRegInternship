@@ -10,6 +10,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let tst of testService.listTest; let i = index">
+      <!-- <td>{{tst}}</td> -->
       <td>{{ tst.rno }}</td>
       <td>{{ tst.name }}</td>
       <td>{{ tst.gender }}</td>
@@ -21,10 +22,7 @@
         &nbsp;&nbsp;
         <span><a (click)="onDelete(tst)" class="link-dark"><i class="bi bi-trash"></i></a></span>
       </td>
-      <!-- <td >
-        <span><img src="../img/edit.png" alt="edit" /></span>
-        <span><img src="../img/delete.png" alt="delete" /></span>
-      </td> -->
+     
     </tr>
   </tbody>
 </table>
