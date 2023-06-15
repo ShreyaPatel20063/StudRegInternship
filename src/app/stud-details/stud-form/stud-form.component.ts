@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Tblcourse } from 'src/app/shared/tblcourse.model';
 import { TblstudService } from 'src/app/shared/tblstud.service';
 
 @Component({
@@ -14,12 +15,20 @@ import { TblstudService } from 'src/app/shared/tblstud.service';
 })
 export class StudFormComponent implements OnInit {
   constructor(private fb: FormBuilder, public service: TblstudService) {}
-  ngOnInit() {}
+  ngOnInit() {
+    this.service.getCourse().subscribe((data) => {
+      this.cidOptions = data;
+    });
+    this.service.getAllStud().subscribe((data) => {
+      this.service.listStud = data;
+    });
+  }
+  
   maxSid = this.service.maxSid() as number;
-
+  cidOptions : Tblcourse[] = this.service.getListCourse();
   public studForm = this.fb.group({
     sid: [
-      this.maxSid,
+      this.maxSid ,
       [Validators.required, Validators.min(1), Validators.max(this.maxSid)],
     ],
     name: ['', [Validators.minLength(3), Validators.required]],
@@ -35,11 +44,11 @@ export class StudFormComponent implements OnInit {
   });
 
   onSubmit() {
-    var f = this.studForm.value;
+    var f = this.studForm.value as any;
     if (f != null) {
       console.log(f);
       this.service.setStudData(f);
-      this.service.postStud();
+      this.service.postStud().subscribe();
     }
   }
 }

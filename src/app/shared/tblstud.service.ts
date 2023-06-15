@@ -28,13 +28,13 @@ export class TblstudService {
     return this.studData;
   } // this method is used to get the value of studData
 
-  // public setListStud(stud: any) {
-  //   this.listStud = stud;
-  //   console.log(this.listStud);
-  // } // this method is used to set the value of studData
-  // public getListStud() {
-  //   return this.listStud;
-  // } // this method is used to get the value of studData
+  public setListStud(stud: any) {
+    this.listStud = stud;
+    console.log(this.listStud);
+  } // this method is used to set the value of studData
+  public getListStud() {
+    return this.listStud;
+  } // this method is used to get the value of studData
 
   getAllStud(): Observable<Tblstud[]> {
     return this.myhttp.get<Tblstud[]>(this.studUrl);
@@ -61,10 +61,19 @@ export class TblstudService {
   }
 
   maxSid(): number {
-    let s = this.listStud.reduce((a, v) => {
-      return a > v.sid ? a : v.sid;
-    }, 0);
-    return s + 1;
+    this.getAllStud().subscribe(data => {
+      this.setListStud(data);
+      // console.log(this.listStud);
+    });
+    //code to count from data
+    var max = 0;
+    console.log(this.getListStud().length);
+    for (var i = 0; i < this.listStud.length; i++) {
+      if (this.listStud[i].sid > max) {
+        max = this.listStud[i].sid;
+      }
+    }
+    return max+1;
   }
 
   genRno(cid: number): string {
@@ -101,12 +110,12 @@ export class TblstudService {
     return this.courseData;
   } // this method is used to get the value of courseData
 
-  // public setListCourse(course: Tblcourse[]) {
-  //   this.listCourse = course;
-  // } // this method is used to set the value of Listcourse
-  // public getListCourse() {
-  //   return this.listCourse;
-  // } // this method is used to get the value of Listcourse
+  public setListCourse(course: Tblcourse[]) {
+    this.listCourse = course;
+  } // this method is used to set the value of Listcourse
+  public getListCourse() {
+    return this.listCourse;
+  } // this method is used to get the value of Listcourse
 
   getCourse(): Observable<Tblcourse[]> {
     return this.myhttp.get<Tblcourse[]>(this.courseUrl);

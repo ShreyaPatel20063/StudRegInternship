@@ -1,3 +1,260 @@
-<form >
+<!-- <form [formGroup]="studForm" (ngSubmit) = "onSubmit()">
+    <label for="sid">SID</label>
+    <input type="number"  [disabled]=true formControlName="sid"><br><br>
     
-</form>
+    <label for="name">NAME</label>
+    <input type="text" formControlName="name"><br><br>
+
+    <label for="dob">DOB</label>
+    <input type="date" formControlName="dob" >
+</form> -->
+
+<form [formGroup]="studForm" (ngSubmit)="onSubmit() ">
+    <div>
+      <label for="sid">SID:</label>
+      <input type="number" id="sid" formControlName="sid" />
+      <div
+        *ngIf="
+          studForm.get('sid')?.invalid &&
+          (studForm.get('sid')?.dirty || studForm.get('sid')?.touched)
+        "
+        class="error-message"
+      >
+        <div
+          *ngIf="studForm.get('sid')?.hasError('required')"
+          class="error-text"
+        >
+          SID is required.
+        </div>
+        <div
+          *ngIf="
+            studForm.get('sid')?.hasError('min') &&
+            (studForm.get('sid')?.dirty || studForm.get('sid')?.touched)
+          "
+          class="error-text"
+        >
+          SID should be greater than or equal to 1.
+        </div>
+        <div
+          *ngIf="
+            studForm.get('sid')?.hasError('max') &&
+            (studForm.get('sid')?.dirty || studForm.get('sid')?.touched)
+          "
+          class="error-text"
+        >
+          SID should be less than or equal to {{ maxSid }}.
+        </div>
+      </div>
+    </div>
+   
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" formControlName="name" />
+      <div
+        *ngIf="
+          studForm.get('name')?.invalid &&
+          (studForm.get('name')?.dirty || studForm.get('name')?.touched)
+        "
+        class="error-message"
+      >
+        <div
+          *ngIf="studForm.get('name')?.hasError('required')"
+          class="error-text"
+        >
+          Name is required.
+        </div>
+        <div
+          *ngIf="
+            studForm.get('name')?.hasError('minlength') &&
+            (studForm.get('name')?.dirty || studForm.get('name')?.touched)
+          "
+          class="error-text"
+        >
+          Name should have a minimum length of 3 characters.
+        </div>
+      </div>
+    </div>
+  
+    <div>
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" formControlName="dob" />
+      <div
+        *ngIf="
+          studForm.get('dob')?.invalid &&
+          (studForm.get('dob')?.dirty || studForm.get('dob')?.touched)
+        "
+        class="error-message"
+      >
+        <div
+          *ngIf="studForm.get('dob')?.hasError('required')"
+          class="error-text"
+        >
+          Date of Birth is required.
+        </div>
+      </div>
+    </div>
+  
+    <div>
+      <label for="gender">Gender:</label>
+      <select id="gender" formControlName="gender">
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+        <option value="O">Other</option>
+      </select>
+      <div
+        *ngIf="
+          studForm.get('gender')?.invalid &&
+          (studForm.get('gender')?.dirty || studForm.get('gender')?.touched)
+        "
+        class="error-message"
+      >
+        <div
+          *ngIf="studForm.get('gender')?.hasError('required')"
+          class="error-text"
+        >
+          Gender is required.
+        </div>
+      </div>
+    </div>
+  
+    <div>
+      <label for="cid">COURSE:</label>
+      <!-- <input type="" id="cid" formControlName="cid" /> -->
+      <select formControlName="cid" >
+        <option *ngFor="let opt of cidOptions" value="opt.cid">{{ opt.cname }}</option>
+      </select>
+      <div
+        *ngIf="
+          studForm.get('cid')?.invalid &&
+          (studForm.get('cid')?.dirty || studForm.get('cid')?.touched)
+        "
+        class="error-message"
+      >
+        <!-- <div
+          *ngIf="studForm.get('cid')?.hasError('required')"
+          class="error-text"
+        >
+          CID is required.
+        </div>
+        <div
+          *ngIf="
+            studForm.get('cid')?.hasError('min') &&
+            (studForm.get('cid')?.dirty || studForm.get('cid')?.touched)
+          "
+          class="error-text"
+        >
+          CID should be greater than or equal to 1.
+        </div> -->
+      </div>
+    </div>
+  
+    <div>
+      <label for="rno">Roll No:</label>
+      <input type="text" id="rno" formControlName="rno" />
+    </div>
+  
+    <div>
+      <label for="div">Division:</label>
+      <input type="number" id="div" formControlName="div" />
+      <div
+        *ngIf="
+          studForm.get('div')?.invalid &&
+          (studForm.get('div')?.dirty || studForm.get('div')?.touched)
+        "
+        class="error-message"
+      >
+        <div
+          *ngIf="studForm.get('div')?.hasError('required')"
+          class="error-text"
+        >
+          Division is required.
+        </div>
+      </div>
+    </div>
+  
+    <div>
+      <label for="sem">Semester:</label>
+      <input type="number" id="sem" formControlName="sem" />
+      <div
+        *ngIf="
+          studForm.get('sem')?.invalid &&
+          (studForm.get('sem')?.dirty || studForm.get('sem')?.touched)
+        "
+        class="error-message"
+      >
+        <div
+          *ngIf="studForm.get('sem')?.hasError('required')"
+          class="error-text"
+        >
+          Semester is required.
+        </div>
+      </div>
+    </div>
+  
+    <div>
+      <label for="per12">Percentage in 12th:</label>
+      <input type="number" id="per12" formControlName="per12" />
+      <div
+        *ngIf="
+          studForm.get('per12')?.invalid &&
+          (studForm.get('per12')?.dirty || studForm.get('per12')?.touched)
+        "
+        class="error-message"
+      >
+        <div
+          *ngIf="studForm.get('per12')?.hasError('required')"
+          class="error-text"
+        >
+          Percentage in 12th is required.
+        </div>
+        <div
+          *ngIf="
+            studForm.get('per12')?.hasError('min') &&
+            (studForm.get('per12')?.dirty || studForm.get('per12')?.touched)
+          "
+          class="error-text"
+        >
+          Percentage in 12th should be greater than or equal to 0.
+        </div>
+        <div
+          *ngIf="
+            studForm.get('per12')?.hasError('max') &&
+            (studForm.get('per12')?.dirty || studForm.get('per12')?.touched)
+          "
+          class="error-text"
+        >
+          Percentage in 12th should be less than or equal to 100.
+        </div>
+      </div>
+    </div>
+  
+    <div>
+      <label for="add">Address:</label>
+      <textarea id="add" formControlName="add"></textarea>
+      <div
+        *ngIf="
+          studForm.get('add')?.invalid &&
+          (studForm.get('add')?.dirty || studForm.get('add')?.touched)
+        "
+        class="error-message"
+      >
+        <div
+          *ngIf="studForm.get('add')?.hasError('required')"
+          class="error-text"
+        >
+          Address is required.
+        </div>
+      </div>
+    </div>
+  
+    <div>
+      <label for="cidNavigation">CID Navigation:</label>
+      <input type="text" id="cidNavigation" formControlName="cidNavigation" [disabled]=true />
+    </div>
+   <div *ngIf="studForm.valid && studForm.touched && studForm.dirty">
+    <button type="submit">Submit</button>
+    
+   </div>
+
+  </form>
+  
