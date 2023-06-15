@@ -28,5 +28,5 @@
   <div *ngIf="Display">
     <app-stud-display></app-stud-display>
   </div>
-  <app-stud-form></app-stud-form>
+  <app-stud-form (reload)="onrefresh()"></app-stud-form>
 </div>

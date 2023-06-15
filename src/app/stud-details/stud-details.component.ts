@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TblstudService } from '../shared/tblstud.service';
 import { Tblstud } from '../shared/tblstud.model';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { Tblstud } from '../shared/tblstud.model';
 })
 export class StudDetailsComponent implements OnInit{
   Display: boolean = false;
-  constructor(public service: TblstudService) {}
+  constructor(public service: TblstudService, private route : Router) {}
   ngOnInit() {
     this.service.getAllStud().subscribe(data =>
       {
@@ -41,6 +42,8 @@ export class StudDetailsComponent implements OnInit{
       {
         this.service.listStud=data;
       });
+
+    this.onrefresh();
   }
   onEdit(sid: number) {
   }
@@ -48,5 +51,10 @@ export class StudDetailsComponent implements OnInit{
     this.service.setStudData(stud);
     this.service.setcourseDataById(stud.cid);
     this.Display=!this.Display;
+  }
+  onrefresh() {
+    //refresh the page
+    this.route.navigate([this.route.url]);
+    
   }
 }

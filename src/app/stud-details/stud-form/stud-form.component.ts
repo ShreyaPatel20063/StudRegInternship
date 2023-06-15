@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Tblcourse } from 'src/app/shared/tblcourse.model';
 import { TblstudService } from 'src/app/shared/tblstud.service';
 
@@ -14,7 +15,8 @@ import { TblstudService } from 'src/app/shared/tblstud.service';
   styleUrls: ['./stud-form.component.css'],
 })
 export class StudFormComponent implements OnInit {
-  constructor(private fb: FormBuilder, public service: TblstudService) {}
+  @Output() reload : EventEmitter<void> = new EventEmitter<void>();
+  constructor(private fb: FormBuilder, public service: TblstudService, private route : Router) {}
   ngOnInit() {
     this.service.getCourse().subscribe((data) => {
       this.cidOptions = data;
@@ -26,6 +28,7 @@ export class StudFormComponent implements OnInit {
   
   maxSid = this.service.maxSid() as number;
   cidOptions : Tblcourse[] = this.service.getListCourse();
+
   public studForm = this.fb.group({
     sid: [
       this.maxSid ,
@@ -49,6 +52,15 @@ export class StudFormComponent implements OnInit {
       console.log(f);
       this.service.setStudData(f);
       this.service.postStud().subscribe();
+      // this.reload=true;
+      this.onrefresh();
+      this.route.navigate([this.route.url]);
     }
+  }
+
+  onrefresh() {
+    this.studForm.reset();
+    this.reload.emit();
+    // this.ngOnInit();
   }
 }

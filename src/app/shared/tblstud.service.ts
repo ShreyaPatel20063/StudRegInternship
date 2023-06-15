@@ -9,7 +9,16 @@ import { DatePipe } from '@angular/common';
   providedIn: 'root',
 })
 export class TblstudService {
-  constructor(private myhttp: HttpClient, private dp: DatePipe) {}
+  constructor(private myhttp: HttpClient, private dp: DatePipe) {
+    this.getAllStud().subscribe((data) => {
+      this.listStud = data;
+    }
+    );
+    this.getCourse().subscribe((data) => {
+      this.listCourse = data;
+    }
+    );
+  }
   //for tblstud
   studUrl: string = 'https://localhost:7095/api/Api'; // this is the url of the api
   listStud: Tblstud[] = []; // this is the array of objects of type Tblstud

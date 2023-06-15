@@ -121,7 +121,7 @@
       <label for="cid">COURSE:</label>
       <!-- <input type="" id="cid" formControlName="cid" /> -->
       <select formControlName="cid" >
-        <option *ngFor="let opt of cidOptions" value="opt.cid">{{ opt.cname }}</option>
+        <option *ngFor="let opt of cidOptions" value={{opt.cid}}>{{ opt.cname }}</option>
       </select>
       <div
         *ngIf="
