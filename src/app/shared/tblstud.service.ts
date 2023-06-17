@@ -3,13 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Tblstud } from './tblstud.model';
 import { Tblcourse } from './tblcourse.model';
 import { Observable } from 'rxjs';
-import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TblstudService {
-  constructor(private myhttp: HttpClient, private dp: DatePipe) {
+  constructor(private myhttp: HttpClient) {
     this.getAllStud().subscribe((data) => {
       this.listStud = data;
     }
@@ -66,7 +65,7 @@ export class TblstudService {
   } // this method is used to delete a record from the database
 
   getStudLikeRno(str : string){
-    return this.myhttp.get(`${this.rnoUrl}/${str}`);
+    return this.myhttp.get<string[]>(`${this.rnoUrl}/${str}`);
   }
 
   maxSid(): number {
@@ -85,20 +84,7 @@ export class TblstudService {
     return max+1;
   }
 
-  genRno(cid: number): string {
-    var rno = '';
-    const yr = this.dp.transform(new Date(), 'yy');
-    this.setcourseDataById(cid);
-    var cou = this.courseData.cname;
-
-    rno = yr + cou; //////////////////////////////////////////
-    var id;
-    this.getStudLikeRno(rno).subscribe(data => {
-      id = data;
-    });
-    rno = rno + id;
-    return rno;
-  }
+  
 
   public setcourseData(course: Tblcourse) {
     this.courseData = course;

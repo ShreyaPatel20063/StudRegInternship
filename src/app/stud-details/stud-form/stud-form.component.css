@@ -1,13 +1,14 @@
 form{
-    margin: 0 auto;
+    margin: 10px auto;
     width: 400px;
     font-family: Arial, sans-serif;
-    background-color: beige;
-    padding-left: 10px;
-    padding-top: 10px;
+    background-color : azure;
+    padding : 10px;
     border-radius: 3px;
     border: 1px solid #ccc;
+    
 }
+
 .error-message {
     color: red;
     margin-top: 5px;

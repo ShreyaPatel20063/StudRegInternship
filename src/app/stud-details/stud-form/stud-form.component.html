@@ -1,16 +1,5 @@
-<!-- <form [formGroup]="studForm" (ngSubmit) = "onSubmit()">
-    <label for="sid">SID</label>
-    <input type="number"  [disabled]=true formControlName="sid"><br><br>
-    
-    <label for="name">NAME</label>
-    <input type="text" formControlName="name"><br><br>
-
-    <label for="dob">DOB</label>
-    <input type="date" formControlName="dob" >
-</form> -->
-
 <form [formGroup]="studForm" (ngSubmit)="onSubmit() ">
-    <div>
+    <!-- <div>
       <label for="sid">SID:</label>
       <input type="number" id="sid" formControlName="sid" />
       <div
@@ -45,7 +34,7 @@
           SID should be less than or equal to {{ maxSid }}.
         </div>
       </div>
-    </div>
+    </div> -->
    
     <div>
       <label for="name">Name:</label>
@@ -121,7 +110,7 @@
       <label for="cid">COURSE:</label>
       <!-- <input type="" id="cid" formControlName="cid" /> -->
       <select formControlName="cid" >
-        <option *ngFor="let opt of cidOptions" value={{opt.cid}}>{{ opt.cname }}</option>
+        <option *ngFor="let opt of cidOptions" value={{opt.cid}}>{{opt.cid}} - {{ opt.cname }}</option>
       </select>
       <div
         *ngIf="
@@ -148,14 +137,15 @@
       </div>
     </div>
   
-    <div>
-      <label for="rno">Roll No:</label>
-      <input type="text" id="rno" formControlName="rno" />
-    </div>
+    
   
     <div>
       <label for="div">Division:</label>
-      <input type="number" id="div" formControlName="div" />
+      <select formControlName="div" >
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
       <div
         *ngIf="
           studForm.get('div')?.invalid &&
@@ -174,7 +164,11 @@
   
     <div>
       <label for="sem">Semester:</label>
-      <input type="number" id="sem" formControlName="sem" />
+      <select formControlName="sem">
+        <option value="1" selected=true>1</option>
+        <option value="3">3</option>
+      </select>
+      
       <div
         *ngIf="
           studForm.get('sem')?.invalid &&
@@ -190,7 +184,12 @@
         </div>
       </div>
     </div>
-  
+
+    <!-- <div>
+      <label for="rno">Roll No like:</label>
+      <input type="text" id="rno" formControlName="rno" [disabled]="isDisable" />
+    </div> -->
+
     <div>
       <label for="per12">Percentage in 12th:</label>
       <input type="number" id="per12" formControlName="per12" />
@@ -247,10 +246,10 @@
       </div>
     </div>
   
-    <div>
+    <!-- <div>
       <label for="cidNavigation">CID Navigation:</label>
       <input type="text" id="cidNavigation" formControlName="cidNavigation" [disabled]=true />
-    </div>
+    </div> -->
    <div *ngIf="studForm.valid && studForm.touched && studForm.dirty">
     <button type="submit">Submit</button>
     

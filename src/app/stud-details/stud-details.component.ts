@@ -46,6 +46,10 @@ export class StudDetailsComponent implements OnInit{
     this.onrefresh();
   }
   onEdit(sid: number) {
+    this.service.getStudLikeRno('23011').subscribe(data =>
+      {
+        console.log(data);
+      });
   }
   onDisplay(stud: Tblstud) {
     this.service.setStudData(stud);
