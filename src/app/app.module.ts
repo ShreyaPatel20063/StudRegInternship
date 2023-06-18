@@ -11,7 +11,9 @@ import { DatePipe } from '@angular/common';   // it is used to format the date
 import { TestUpdateComponent } from './test-details/test-update/test-update.component';
 import { StudDetailsComponent } from './stud-details/stud-details.component';
 import { StudDisplayComponent } from './stud-details/stud-display/stud-display.component';
-import { StudFormComponent } from './stud-details/stud-form/stud-form.component'; // it is used to make the class as a component
+import { StudFormComponent } from './stud-details/stud-form/stud-form.component';
+import { StudUpdateComponent } from './stud-details/stud-update/stud-update.component';
+import { HomepageComponent } from './homepage/homepage.component'; // it is used to make the class as a component
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { StudFormComponent } from './stud-details/stud-form/stud-form.component'
     TestUpdateComponent,
     StudDetailsComponent,
     StudDisplayComponent,
-    StudFormComponent
+    StudFormComponent,
+    StudUpdateComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,

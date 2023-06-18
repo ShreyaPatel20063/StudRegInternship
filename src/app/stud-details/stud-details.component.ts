@@ -46,10 +46,7 @@ export class StudDetailsComponent implements OnInit{
     this.onrefresh();
   }
   onEdit(sid: number) {
-    this.service.getStudLikeRno('23011').subscribe(data =>
-      {
-        console.log(data);
-      });
+    
   }
   onDisplay(stud: Tblstud) {
     this.service.setStudData(stud);
@@ -59,6 +56,5 @@ export class StudDetailsComponent implements OnInit{
   onrefresh() {
     //refresh the page
     this.route.navigate([this.route.url]);
-    
   }
 }
