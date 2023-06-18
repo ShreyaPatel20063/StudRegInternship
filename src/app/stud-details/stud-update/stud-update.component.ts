@@ -8,8 +8,7 @@ import {
 } from '@angular/forms';
 import { TblstudService } from 'src/app/shared/tblstud.service';
 import { Router } from '@angular/router';
-import { Tblstud } from 'src/app/shared/tblstud.model';
-import { DatePipe } from '@angular/common';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-stud-update',
@@ -20,7 +19,7 @@ import { DatePipe } from '@angular/common';
 export class StudUpdateComponent implements OnInit {
   @Input() studID: number;
   cidOptions: any;
-  public studForm: FormGroup;
+  public studForm1: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -31,18 +30,20 @@ export class StudUpdateComponent implements OnInit {
     this.service.getStudById(this.studID).subscribe((data) => {
       this.service.setStudData(data);
       console.log(data);
+
       this.service.getCourseById(data.cid).subscribe((data1) => {
         this.service.setcourseData(data1);
         console.log(data1);
+
         if (data && data1) {
-          this.studForm = this.fb.group({
-            sid: [this.service.studData.sid],
+          this.studForm1 = this.fb.group({
+            sid: [data.sid],
             name: [
-              { value: this.service.studData.name.toString() },
+              this.service.studData.name,
               [Validators.minLength(3), Validators.required],
             ],
             dob: [
-              new Date(this.service.studData.dob).toISOString().split('T')[0],
+              moment(this.service.studData.dob).format('YYYY-MM-DD'),
               [Validators.required],
             ],
             gender: [this.service.studData.gender, [Validators.required]],
@@ -61,7 +62,7 @@ export class StudUpdateComponent implements OnInit {
             cidNavigation: [null],
           });
         } else {
-          this.studForm = this.fb.group({
+          this.studForm1 = this.fb.group({
             sid: [null],
             name: [null, [Validators.minLength(3), Validators.required]],
             dob: [null, [Validators.required]],
@@ -83,7 +84,8 @@ export class StudUpdateComponent implements OnInit {
   }
 
   onSubmit() {
-    var f = this.studForm.value as any;
+    console.log(this.studForm1.value);
+    var f = this.studForm1.value as any;
     // this.genRno(f.cid);
     this.service.putStud(f.sid, f).subscribe((res) => {
       alert('Updated Successfully');

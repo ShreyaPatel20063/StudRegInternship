@@ -1,24 +1,24 @@
-<form [formGroup]="studForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="studForm1" (ngSubmit)="onSubmit()">
   <div>
     <label for="name">Name:</label>
     <input type="text" id="name" formControlName="name" />
     <div
       *ngIf="
-        studForm.get('name')?.invalid &&
-        (studForm.get('name')?.dirty || studForm.get('name')?.touched)
+        studForm1.get('name')?.invalid &&
+        (studForm1.get('name')?.dirty || studForm1.get('name')?.touched)
       "
       class="error-message"
     >
       <div
-        *ngIf="studForm.get('name')?.hasError('required')"
+        *ngIf="studForm1.get('name')?.hasError('required')"
         class="error-text"
       >
         Name is required.
       </div>
       <div
         *ngIf="
-          studForm.get('name')?.hasError('minlength') &&
-          (studForm.get('name')?.dirty || studForm.get('name')?.touched)
+          studForm1.get('name')?.hasError('minlength') &&
+          (studForm1.get('name')?.dirty || studForm1.get('name')?.touched)
         "
         class="error-text"
       >
@@ -32,12 +32,12 @@
     <input type="date" id="dob" formControlName="dob" />
     <div
       *ngIf="
-        studForm.get('dob')?.invalid &&
-        (studForm.get('dob')?.dirty || studForm.get('dob')?.touched)
+        studForm1.get('dob')?.invalid &&
+        (studForm1.get('dob')?.dirty || studForm1.get('dob')?.touched)
       "
       class="error-message"
     >
-      <div *ngIf="studForm.get('dob')?.hasError('required')" class="error-text">
+      <div *ngIf="studForm1.get('dob')?.hasError('required')" class="error-text">
         Date of Birth is required.
       </div>
     </div>
@@ -52,13 +52,13 @@
     </select>
     <div
       *ngIf="
-        studForm.get('gender')?.invalid &&
-        (studForm.get('gender')?.dirty || studForm.get('gender')?.touched)
+        studForm1.get('gender')?.invalid &&
+        (studForm1.get('gender')?.dirty || studForm1.get('gender')?.touched)
       "
       class="error-message"
     >
       <div
-        *ngIf="studForm.get('gender')?.hasError('required')"
+        *ngIf="studForm1.get('gender')?.hasError('required')"
         class="error-text"
       >
         Gender is required.
@@ -71,21 +71,21 @@
     <input type="number" id="per12" formControlName="per12" />
     <div
       *ngIf="
-        studForm.get('per12')?.invalid &&
-        (studForm.get('per12')?.dirty || studForm.get('per12')?.touched)
+        studForm1.get('per12')?.invalid &&
+        (studForm1.get('per12')?.dirty || studForm1.get('per12')?.touched)
       "
       class="error-message"
     >
       <div
-        *ngIf="studForm.get('per12')?.hasError('required')"
+        *ngIf="studForm1.get('per12')?.hasError('required')"
         class="error-text"
       >
         Percentage in 12th is required.
       </div>
       <div
         *ngIf="
-          studForm.get('per12')?.hasError('min') &&
-          (studForm.get('per12')?.dirty || studForm.get('per12')?.touched)
+          studForm1.get('per12')?.hasError('min') &&
+          (studForm1.get('per12')?.dirty || studForm1.get('per12')?.touched)
         "
         class="error-text"
       >
@@ -93,8 +93,8 @@
       </div>
       <div
         *ngIf="
-          studForm.get('per12')?.hasError('max') &&
-          (studForm.get('per12')?.dirty || studForm.get('per12')?.touched)
+          studForm1.get('per12')?.hasError('max') &&
+          (studForm1.get('per12')?.dirty || studForm1.get('per12')?.touched)
         "
         class="error-text"
       >
@@ -108,29 +108,29 @@
     <textarea id="add" formControlName="add"></textarea>
     <div
       *ngIf="
-        studForm.get('add')?.invalid &&
-        (studForm.get('add')?.dirty || studForm.get('add')?.touched)
+        studForm1.get('add')?.invalid &&
+        (studForm1.get('add')?.dirty || studForm1.get('add')?.touched)
       "
       class="error-message"
     >
-      <div *ngIf="studForm.get('add')?.hasError('required')" class="error-text">
+      <div *ngIf="studForm1.get('add')?.hasError('required')" class="error-text">
         Address is required.
       </div>
     </div>
   </div>
 
   <div class="right">
-    <label>Course: </label>
-    {{ this.service.courseData.cname }}
-    <br /><br />
+    <label>Course: </label>&nbsp;<span>{{ this.service.courseData.cname }}</span>
+    <br />
     <label>Div: </label>
     {{ this.service.studData.div }}
-    <br /><br />
+    <br />
     <label>Sem: </label>
     {{ this.service.studData.sem }}
-    <br /><br />
+    <br />
     <label>R.No. : </label>
     {{ this.service.studData.rno }}
+    <br />
   </div>
-  <button *ngIf="studForm.valid" type="submit">Submit</button>
+  <button *ngIf="studForm1.valid" type="submit">Submit</button>
 </form>
