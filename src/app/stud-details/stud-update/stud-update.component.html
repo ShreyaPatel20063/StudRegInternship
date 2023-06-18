@@ -120,17 +120,17 @@
   </div>
 
   <div class="right">
-    <label >Course: </label>
-    {{this.service.courseData.cname}}
-    <br><br>
-    <label >Div: </label>
-    {{this.service.studData.div}}
-    <br><br>
-    <label >Sem: </label>
-    {{this.service.studData.sem}}
-    <br><br>
-    <label >R.No. : </label>
-    {{this.service.studData.rno}}
+    <label>Course: </label>
+    {{ this.service.courseData.cname }}
+    <br /><br />
+    <label>Div: </label>
+    {{ this.service.studData.div }}
+    <br /><br />
+    <label>Sem: </label>
+    {{ this.service.studData.sem }}
+    <br /><br />
+    <label>R.No. : </label>
+    {{ this.service.studData.rno }}
   </div>
   <button *ngIf="studForm.valid" type="submit">Submit</button>
 </form>

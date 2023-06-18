@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { TblstudService } from '../shared/tblstud.service';
 import { Tblstud } from '../shared/tblstud.model';
 import { Router } from '@angular/router';
@@ -11,6 +11,9 @@ import { Router } from '@angular/router';
 })
 export class StudDetailsComponent implements OnInit{
   Display: boolean = false;
+  editEvent : boolean = false;
+  sid : number;
+
   constructor(public service: TblstudService, private route : Router) {}
   ngOnInit() {
     this.service.getAllStud().subscribe(data =>
@@ -46,8 +49,11 @@ export class StudDetailsComponent implements OnInit{
     this.onrefresh();
   }
   onEdit(sid: number) {
-    
+    this.sid=sid;  
+    this.editEvent=!this.editEvent;
   }
+
+
   onDisplay(stud: Tblstud) {
     this.service.setStudData(stud);
     this.service.setcourseDataById(stud.cid);

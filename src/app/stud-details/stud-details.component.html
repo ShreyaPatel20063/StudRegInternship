@@ -29,5 +29,8 @@
     <app-stud-display></app-stud-display>
   </div>
   <!-- <app-stud-form (reload)="onrefresh()"></app-stud-form> -->
-  <app-stud-update></app-stud-update>
+  <div *ngIf="editEvent">
+    <app-stud-update [studID]="sid"></app-stud-update>
+  </div>
+ 
 </div>
