@@ -1,4 +1,4 @@
-<div>
+<div >
   <br>
   <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filterString" />
   <hr>
@@ -28,11 +28,10 @@
       </tr>
     </tbody>
   </table>
-  <div *ngIf="Display">
+  <div class="details" *ngIf="Display">
     <app-stud-display></app-stud-display>
   </div>
-  <!-- <app-stud-form (reload)="onrefresh()"></app-stud-form> -->
-  <div *ngIf="editEvent">
+  <div class="details" *ngIf="editEvent">
     <app-stud-update [studID]="sid"></app-stud-update>
   </div>
  
