@@ -1,4 +1,7 @@
 <div>
+  <br>
+  <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filterString" />
+  <hr>
   <table class="table table-light">
     <thead class="thead-dark">
       <th>Sid</th>
@@ -9,7 +12,7 @@
       <th>Actions</th>
     </thead>
     <tbody >
-      <tr *ngFor="let ls of service.listStud; let i=index">
+      <tr *ngFor="let ls of service.listStud | filter : filterString ; ">
         <td>{{ ls.sid }}</td>
         <td>{{ ls.name }}</td>
         <td>{{ ls.gender }}</td>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { StudFormComponent } from '../stud-form/stud-form.component';
 import {
   FormBuilder,
@@ -16,7 +16,7 @@ import * as moment from 'moment';
   templateUrl: './stud-update.component.html',
   styleUrls: ['./stud-update.component.css'],
 })
-export class StudUpdateComponent implements OnInit {
+export class StudUpdateComponent implements OnInit, OnChanges{
   @Input() studID: number;
   cidOptions: any;
   public studForm1: FormGroup;
@@ -26,6 +26,9 @@ export class StudUpdateComponent implements OnInit {
     public service: TblstudService,
     private route: Router
   ) {}
+  ngOnChanges(changes: SimpleChanges): void {
+    this.ngOnInit();
+  }
   ngOnInit(): void {
     this.service.getStudById(this.studID).subscribe((data) => {
       this.service.setStudData(data);

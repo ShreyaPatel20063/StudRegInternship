@@ -31,29 +31,30 @@ export class StudFormComponent implements OnInit {
     this.service.getAllStud().subscribe((data) => {
       this.service.listStud = data;
     });
+    this.studForm = this.fb.group({
+      sid: [
+        1,
+        [Validators.required, Validators.min(1), Validators.max(1)],
+      ],
+      name: ['', [Validators.minLength(3), Validators.required]],
+      dob: [Date, [Validators.required]],
+      gender: ['M', [Validators.required]],
+      cid: [, [Validators.required, Validators.min(1)]],
+      div: [1, [Validators.required]],
+      sem: [1, [Validators.required]],
+      rno: ['23011001'],
+      per12: [0.0, [Validators.required, Validators.min(0), Validators.max(100)]],
+      add: ['', [Validators.required]],
+      cidNavigation: [null],
+    });
   }
 
-  @Output() reload: EventEmitter<void> = new EventEmitter<void>();
+  // @Output() reload: EventEmitter<void> = new EventEmitter<void>();
   cidOptions: Tblcourse[];
   isDisable: boolean = true;
   stud: string[];
 
-  public studForm = this.fb.group({
-    sid: [
-      1,
-      [Validators.required, Validators.min(1), Validators.max(1)],
-    ],
-    name: ['', [Validators.minLength(3), Validators.required]],
-    dob: [Date, [Validators.required]],
-    gender: ['M', [Validators.required]],
-    cid: [, [Validators.required, Validators.min(1)]],
-    div: [1, [Validators.required]],
-    sem: [1, [Validators.required]],
-    rno: ['23011001'],
-    per12: [0.0, [Validators.required, Validators.min(0), Validators.max(100)]],
-    add: ['', [Validators.required]],
-    cidNavigation: [null],
-  });
+  public studForm: FormGroup;
 
   onSubmit() {
     var f = this.studForm.value as any;
@@ -120,7 +121,8 @@ export class StudFormComponent implements OnInit {
 
   onrefresh() {
     this.studForm.reset();
-    this.reload.emit();
+    this.ngOnInit();
+    // this.reload.emit();
     // this.ngOnInit();
   }
 }

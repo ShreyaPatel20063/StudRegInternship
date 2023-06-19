@@ -7,6 +7,7 @@ import { StudFormComponent } from './stud-details/stud-form/stud-form.component'
 import { StudUpdateComponent } from './stud-details/stud-update/stud-update.component';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 const routes: Routes = [
 
@@ -14,6 +15,11 @@ const routes: Routes = [
     path: '', // this is the default path
     component: HomepageComponent, // this is the component which will be loaded when the path is empty
   },
+
+  // {
+  //   path: 'filter', // this is the path for the details component
+  //   component: FilterPipe // this is the component which will be loaded when the path is details
+  // },
 
   {
     path: 'details/:id', // this is the path for the details component
