@@ -1,5 +1,10 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { StudFormComponent } from '../stud-form/stud-form.component';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -16,7 +21,7 @@ import * as moment from 'moment';
   templateUrl: './stud-update.component.html',
   styleUrls: ['./stud-update.component.css'],
 })
-export class StudUpdateComponent implements OnInit, OnChanges{
+export class StudUpdateComponent implements OnInit, OnChanges {
   @Input() studID: number;
   cidOptions: any;
   public studForm1: FormGroup;

@@ -21,20 +21,20 @@ const routes: Routes = [
   //   component: FilterPipe // this is the component which will be loaded when the path is details
   // },
 
-  {
-    path: 'details/:id', // this is the path for the details component
-    component: StudDisplayComponent // this is the component which will be loaded when the path is details
-  },
+  // {
+  //   path: 'details/:id', // this is the path for the details component
+  //   component: StudDisplayComponent // this is the component which will be loaded when the path is details
+  // },
 
   {
     path: 'details', // this is the path for the details component
     component: StudDetailsComponent // this is the component which will be loaded when the path is details
   },
 
-  {
-    path: 'form/:id', // this is the path for the details
-    component: StudUpdateComponent // this is the component which will be loaded when the path is form
-  },
+  // {
+  //   path: 'form/:id', // this is the path for the details
+  //   component: StudUpdateComponent // this is the component which will be loaded when the path is form
+  // },
 
   {
     path: 'form', // this is the path for the details 

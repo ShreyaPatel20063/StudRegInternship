@@ -15,6 +15,8 @@ import { StudFormComponent } from './stud-details/stud-form/stud-form.component'
 import { StudUpdateComponent } from './stud-details/stud-update/stud-update.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FilterPipe } from './pipes/filter.pipe'; // it is used to make the class as a component
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 
 
 @NgModule({
@@ -35,6 +37,7 @@ import { FilterPipe } from './pipes/filter.pipe'; // it is used to make the clas
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    NgxSpinnerModule,
     ReactiveFormsModule, // it is used to make two way binding between the html and ts file
     HttpClientModule  // it is used to make http request to the server and get the response from the server for making calls to api 
   ],

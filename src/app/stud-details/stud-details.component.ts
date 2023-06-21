@@ -3,7 +3,7 @@ import { TblstudService } from '../shared/tblstud.service';
 import { Tblstud } from '../shared/tblstud.model';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-stud-details',
   templateUrl: './stud-details.component.html',
@@ -15,18 +15,22 @@ export class StudDetailsComponent implements OnInit {
   sid: number;
   filterString: string = '';
 
-  constructor(public service: TblstudService, private route: Router, private cdr: ChangeDetectorRef) {}
+  constructor(public service: TblstudService, private route: Router, private cdr: ChangeDetectorRef, private loading : NgxSpinnerService) {}
   ngOnInit() {
+    this.loading.show();
     this.service.getAllStud().subscribe((data) => {
       // console.log(data);
       this.service.listStud = data;
       // console.log(this.service.listStud);
+      this.service.getCourse().subscribe((data) => {
+        // console.log(data);
+        this.service.listCourse = data;
+        // console.log(this.service.listCourse);
+        this.loading.hide();
+      });
     });
-    this.service.getCourse().subscribe((data) => {
-      // console.log(data);
-      this.service.listCourse = data;
-      // console.log(this.service.listCourse);
-    });
+    
+    
   }
 
   onDelete(stud: Tblstud) {
