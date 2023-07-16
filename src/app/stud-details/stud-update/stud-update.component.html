@@ -1,7 +1,7 @@
 <form [formGroup]="studForm1" (ngSubmit)="onSubmit()">
   <div>
     <label for="name">Name:</label>
-    <input type="text" id="name" formControlName="name" />
+    <input type="text" id="name" formControlName="name" value="{{ this.service.studData.name }}"/>
     <div
       *ngIf="
         studForm1.get('name')?.invalid &&
